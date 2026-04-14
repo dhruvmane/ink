@@ -27,7 +27,7 @@
     }
 
     .button-label {
-        font-size: 13px;
+        font-size: 15px;
         text-transform: capitalize;
     }
 
@@ -50,6 +50,6 @@
 </script>
 <main>
     <div class="button-field">
-        <button title={label.toLowerCase()} onmouseenter={() => {const audio = new Audio(btnHover); audio.play();}} onclick={onClick(href)}><span class="button-label">{label}</span></button>
+        <button title={label.toLowerCase()} onmouseenter={() => {const audio = new Audio(btnHover); audio.play();}} onclick={onClick(href)}><span class="button-label">{label.toUpperCase()}</span></button>
     </div>
 </main>

@@ -1,4 +1,6 @@
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&display=swap');
+
     * {
         text-align: left;
         font-family: 'Chivo Mono';
@@ -13,15 +15,20 @@
         height: 75px;
         min-width: 100vw;
 
-        background: rgba(202, 202, 202, 0.1);
+        background: none;
         backdrop-filter: blur(10px);
+    }
+
+    .button-icon {
+        margin: 0;
+        padding: 0;
     }
 
     .button-left {
         margin: 0;
         margin-top: 13px;
-        margin-right: 10px;
-        padding: 12px;
+        margin-left: 10px;
+        padding: 15px;
         min-width: 50px;
         float: left;
     }
@@ -50,6 +57,13 @@
         font-size: 15px;
     }
 
+    .button-icon {
+        margin: 12px;
+        padding: 12px;
+        height: 32px;
+        width: 32px;
+    }
+
     button {
         height: 50px;
         border-radius: 100px;
@@ -69,6 +83,8 @@
 </style>
 
 <script lang=ts>
+  import { goto } from "$app/navigation";
+
     let { leftButtons, rightButtons }: any = $props()
 </script>
 
@@ -77,14 +93,23 @@
         <div class="right-button-field">
             {#if rightButtons}
                 {#each rightButtons as button}
-                    <button class="button-right" title={button.label}><p class="button-label">{button.label}</p></button>
+                    {#if button.icon}
+                        <!--Display icon if Specified.-->
+                        <img src={button.icon} class="button-icon" alt="button">
+                    {/if}
+                    <button class="button-right" title={button.label} onclick={() => {goto(`${button.href}`)}}><p class="button-label">{button.label}</p></button>
                 {/each}
             {/if}
         </div>
         <div class="left-button-field">
             {#if leftButtons}
                 {#each leftButtons as button}
-                    <button class="button-left" title={button.label}><p class="button-label">{button.label}</p></button>
+                    {#if button.icon}
+                        <!--Display icon if Specified.-->
+                        <img src={button.icon} class="button-icon" alt="button">
+                    {/if}
+                    <!--Display Label.-->
+                    <button class="button-left" title={button.label} onclick={() => {goto(`${button.href}`)}}><span class="button-label"> {#if button.icon}<img class="button-icon" src={button.icon} alt="icon">{/if} {button.label}</span></button>
                 {/each}
             {/if}
         </div>
